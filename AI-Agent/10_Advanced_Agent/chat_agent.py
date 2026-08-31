@@ -86,11 +86,13 @@ templates_path = Path(__file__).resolve().parent / "templates"
 templates = Jinja2Templates(directory=templates_path)
 
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/")
 async def read_root(request: Request):
     """메인 채팅 페이지를 렌더링"""
-    return templates.TemplateResponse("index.html", {"request": request})
-
+    return templates.TemplateResponse(
+        request, 
+        "index.html"
+    )
 
 async def stream_agent_response(agent_executor, message: str, session_id: str):
     """에이전트의 응답을 스트리밍하는 비동기 제너레이터"""
