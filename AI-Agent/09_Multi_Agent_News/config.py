@@ -1,12 +1,13 @@
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class Config:
     """프로젝트 설정 관리 클래스"""
 
     # OpenAI 설정
-    # 환경변수에서 API 키를 가져오되, 없으면 빈 문자열을 기본값으로 사용
-    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
+    OPENAI_API_KEY: str = os.environ.get("OPENAI_API_KEY")
     MODEL_NAME: str = "gpt-5-mini"
     MAX_TOKENS: int = 150
 
